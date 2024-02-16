@@ -15,6 +15,9 @@ DEVICE_ID = "8C46FFFA5919C048"
 
 # print capture list & interrupt with key
 DEBUG = False
+# True = launch a new instance
+# False = connect on the default port of a running one
+LAUNCH = False
 
 # open serial connection
 ser = serial.Serial(
@@ -26,9 +29,12 @@ ser = serial.Serial(
 )
 
 # open new Logic2 instance
-manager = automation.Manager.launch(
-        application_path= APPLICATION_PATH
-)
+if LAUNCH:
+        manager = automation.Manager.launch(
+                application_path= APPLICATION_PATH
+        )
+else:
+        manager = automation.Manager.connect()
 
 # configure the analyzer
 device_config = automation.LogicDeviceConfiguration(
