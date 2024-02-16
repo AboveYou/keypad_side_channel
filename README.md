@@ -61,20 +61,3 @@ digit | time delta
 
 From the samples we can see that the first digit has to be a 1 because the time of the check increased. Next we would try the same with the next digit.  
 Inputting: `1000, 1100, 1200, ...`
-
-## fixing it
-I can think of two methodes of fixing the issue:  
-
-**random delays**  
-If a random delay between the check and the output is implemented the time delta will not contain any information about the pin and the attack will not be possible.  
-
-[code](./code/delays_keypad_code/delays_keypad_code.ino)  
-[measurements](./random_delay_measured.md)
-
-**check the whole pin**  
-If the compare function lights up the result LEDs after the whole pin is checked the run time should be static and the flaw therefore gone. 
-
-[code](./code/full_check_keypad_code/full_ckeck_keypad_code.ino)  
-[measurements](./full_check_measurement.md)
-
-It would be the best so hash the pin and compare the two hashes, however this is difficult cause the check is performed on a device with very low computing power and hashing functions should be slow by design to be effective.
