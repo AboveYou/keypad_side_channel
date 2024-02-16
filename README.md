@@ -78,20 +78,3 @@ If the compare function lights up the result LEDs after the whole pin is checked
 [measurements](./full_check_measurement.md)
 
 It would be the best so hash the pin and compare the two hashes, however this is difficult cause the check is performed on a device with very low computing power and hashing functions should be slow by design to be effective.
-
-## ideas
-- automated exploitation  
-With another Arduino or a Raspberry the input on the keypad could be automated by injecting signals on the wire (the breadboard) to the keypad. If Logic has a good API the time measurement could be performed there, if not a logic analyzer could be emulated with a Microcontroller (Arduino & Raspberry might be so slow).
-
-    - start automated exploit
-    - program determines base time delta
-    - program probes for first digit
-    - loop until an output on the green LED is detected
-
-- breaking side channel with side channel  
-If we fix the issue with a random delay the time can not be measured with the LED but there is another side channel which leaks data about the execution. When observing the power trace of the chip we should be able to see how may iterations of the loop are performed and therefor how many digits are currently correct.
-
-    - lift the VCC pin of the chip
-    - put in shunt resistor
-    - determine average power trace with oszi
-    - see an offset while guessing the first number
